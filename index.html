@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/clock.js" defer></script>
+  <script src="js/login.js" defer></script>
+  <script src="js/quotes.js" defer></script>
+  <script src="js/addlist.js" defer></script>
+</head>
+<body>
+  <h2 id="clock">00:00:00</h2>
+  
+  <form class="hidden" id="login_form" action="">
+    <input type="text" required maxlength="15" placeholder="Name" class="login_input">
+    <button>Log In</button>
+  </form>
+
+  <div id="welcome" class="hidden">
+    <span id="naming"></span>
+    <button type="submit" id="log_out">Log Out</button>
+  </div>
+
+  <form action="" id="todo_form">
+    <input type="text" placeholder="write a to do" id="todo_input" class="todo_input">
+  </form>
+  <ul id="todo_list">
+
+  </ul>
+  <div id="quote">
+    <span></span>
+    <span></span>
+  </div>
+</body>
+</html>
