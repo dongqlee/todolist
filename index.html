@@ -5,15 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To Do List</title>
+
   <link rel="stylesheet" href="css/style.css">
   <script src="js/clock.js" defer></script>
   <script src="js/login.js" defer></script>
   <script src="js/quotes.js" defer></script>
   <script src="js/addlist.js" defer></script>
+  <script src="js/weather.js" defer></script>
+  <script src="js/calendar.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+
 </head>
 <body>
-  <h2 id="clock">00:00:00</h2>
-  
+
+  <div id="clock">00:00:00</div>
+  <div id="box_month"></div>
+  <div id="box_date"></div>
+  <div id="box_year"></div>
+  <div id="box_day"></div>
+
   <form class="hidden" id="login_form" action="">
     <input type="text" required maxlength="15" placeholder="Name" class="login_input">
     <button>Log In</button>
@@ -33,6 +43,31 @@
   <div id="quote">
     <span></span>
     <span></span>
+  </div>
+
+  <div id="foreCast">
+    <p>오늘 부산 날씨</p>
+    <ul>
+      <li>
+        <span>날씨 : </span><span id="weather"></span>
+      </li>
+      <li>
+        <span>온도 : </span><span id="temperature"></span>
+      </li>
+    </ul>
+    <div>
+      <p>다른 지역 날씨</p>
+      <input id="city" type="text" value="" placeholder="(예)Seoul">
+      <button onclick="getWeather()">검색</button>
+      <ul id="location_weather">
+      </ul>
+    </div>
+  </div>
+
+  <div class="calendar">
+    <div class="calendar_head">
+      
+    </div>
   </div>
 </body>
 </html>
