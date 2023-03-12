@@ -7,13 +7,14 @@
   <title>To Do List</title>
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+  
   <script src="js/clock.js" defer></script>
   <script src="js/login.js" defer></script>
   <script src="js/quotes.js" defer></script>
   <script src="js/addlist.js" defer></script>
   <script src="js/weather.js" defer></script>
   <script src="js/calendar.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
 
 </head>
 <body>
@@ -46,15 +47,25 @@
   </div>
 
   <div id="foreCast">
-    <p>오늘 부산 날씨</p>
-    <ul>
-      <li>
-        <span>날씨 : </span><span id="weather"></span>
-      </li>
-      <li>
-        <span>온도 : </span><span id="temperature"></span>
-      </li>
-    </ul>
+    <div>
+      <p>현재 위치의 날씨</p>
+      <div id="now_weather">
+        <span id="now_location"></span>
+        <span id="now_location_weather"></span>
+        <span id="now_location_temperature"></span>
+      </div>
+    </div>
+    <div>
+      <p>오늘 부산 날씨</p>
+      <ul>
+        <li>
+          <span>날씨 : </span><span id="weather"></span>
+        </li>
+        <li>
+          <span>온도 : </span><span id="temperature"></span>
+        </li>
+      </ul>
+    </div>
     <div>
       <p>다른 지역 날씨</p>
       <input id="city" type="text" value="" placeholder="(예)Seoul">
@@ -66,8 +77,50 @@
 
   <div class="calendar">
     <div class="calendar_head">
-      
+      <button type="button"><i class="fa-solid fa-chevron-left"></i></button>
+      <div>
+        <input type="number" id="year" value="2023">
+        <select name="month" id="month">
+          <option value="1">1월</option>
+          <option value="2">2월</option>
+          <option value="3">3월</option>
+          <option value="4">4월</option>
+          <option value="5">5월</option>
+          <option value="6">6월</option>
+          <option value="7">7월</option>
+          <option value="8">8월</option>
+          <option value="9">9월</option>
+          <option value="10">10월</option>
+          <option value="11">11월</option>
+          <option value="12">12월</option>
+        </select>
+      </div>
+      <button type="button"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th class="sun">일</th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+          <th class="sat">토</th>
+        </tr>
+      </thead>
+      <tbody id="tb_body"></tbody>
+    </table>
   </div>
+
+  <div class="dDay" id="dDay">
+    <form action="" id="dDay_form" class="dDay_form">
+      <input type="date" required id="dDay_date" class="dDay_date" max="2050-12-31" />
+      <input type="text" required id="dDay_title" class="dDay_title" placeholder="Write a Title" />
+      <button id="dDay_add_btn" class="dDay_add_btn">D-Day 설정</button>
+    </form>
+  </div>
+  
 </body>
 </html>
