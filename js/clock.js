@@ -4,6 +4,7 @@ const boxMonth = document.getElementById('box_month');
 const boxDate = document.getElementById('box_date');
 const boxYear = document.getElementById('box_year');
 const boxDay = document.getElementById('box_day');
+
 function getDate() {
   const nowDate = new Date();
   const year = nowDate.getFullYear();

@@ -1,98 +1,67 @@
-const dDay = document.getElementById('dDay');
-const dDayForm = document.getElementById('dDay_form');
-const dDayDate = document.getElementById('dDay_date');
-const dDayTitle = document.getElementById('dDay_title');
+const cntDate = new Date();
 
-let nowDate1 = new Date();
-let curYear = nowDate1.getFullYear();
-let curMonth = String(nowDate1.getMonth()+1).padStart(2, '0');
-let curDate = String(nowDate1.getDate()).padStart(2, '0');
-dDayDate.value = `${curYear}-${curMonth}-${curDate}`;
+let thisMonth = new Date(cntDate.getFullYear(), cntDate.getMonth(), cntDate.getDate());
 
-const DDAY_KEY = 'dDay';
-let dDays = [];
+function rendarCal(thisMonth) {
+  currentYear = thisMonth.getFullYear();
+  currentMonth = thisMonth.getMonth();
 
-function krDate(date) {
-  const utc = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
-  const kstGap = 9 * 60 * 60 * 1000;
-  let krDate = new Date(utc + kstGap);
-  krDate = new Date(krDate.setHours(0, 0, 0, 0));
-  return krDate
-}
-let today = krDate(new Date());
+  const lastDate = new Date(currentYear, currentMonth, 0);
+  const prevDate = lastDate.getDate();
+  const prevDay = lastDate.getDay();
 
-function saveDDays(){
-  localStorage.setItem(DDAY_KEY, JSON.stringify(dDays));
-}
+  const curEndDate = new Date(currentYear, currentMonth + 1, 0);
+  const nextDate = curEndDate.getDate();
+  const nextDay = curEndDate.getDay();
 
-function deleteDDayBox(e) {
-  const div = e.target.parentElement;
-  div.remove();
-  dDays = dDays.filter((item) => item.id != parseInt(div.id));
-  saveDDays();
-}
-function createDDay(newDDayobj) {
-  const div = document.createElement('div');
-  const btn = document.createElement('button');
-  const spanDate = document.createElement('span');
-  const spanCnt = document.createElement('span');
-  const spanTitle = document.createElement('span');
-
-  div.id = newDDayobj.id;
-  div.classList.add('dDay_box');
-
-  btn.classList.add('dDay_btn');
-  btn.innerText = '삭제';
-  btn.addEventListener('click', deleteDDayBox);
-
-  spanDate.classList.add('d_date');
-  spanCnt.classList.add('d_cnt');
-  spanTitle.classList.add('d_title');
-  spanDate.innerText = newDDayobj.endday;
-  spanCnt.innerText = newDDayobj.cntDay;
-  spanTitle.innerText = newDDayobj.title;
-
-  div.appendChild(btn);
-  div.appendChild(spanDate);
-  div.appendChild(spanCnt);
-  div.appendChild(spanTitle);
-  dDay.appendChild(div);
-}
-
-function addSubmit(e) {
-  e.preventDefault();
-
-  let endDate = krDate(new Date(dDayDate.value));
-  let timedelta = endDate - today;
-  let cntDay = Math.floor(timedelta / (1000 * 60 * 60 * 24));
-
-  if(cntDay > 0) {
-    cntDay = cntDay * (-1);
-  } else if(cntDay ===0){
-    cntDay = '-Day'
-  } else {
-    cntDay = '+' + Math.abs(cntDay);
+  const calendarYearMonth = document.querySelector('.calendar_year_month');
+  calendarYearMonth.innerText = `${currentYear}년 ${currentMonth+1}월`
+  
+  const dateBox = document.querySelector('.date_box');
+  dateBox.innerHTML = '';
+  if(prevDay !== 6) {
+    for(let i = prevDate - prevDay; i <= prevDate; i++ ) {
+      dateBox.innerHTML = dateBox.innerHTML +
+      "<div class='dates prev disable'>" +
+      i + 
+      "</div>";
+    }
+  }
+  for(let i = 1; i <= nextDate; i++) {
+    dateBox.innerHTML = dateBox.innerHTML + 
+    "<div class='dates current'>"+
+    i +
+    "</div>";
+  }
+  if(nextDay !==6) {
+    for(let i =1; i<= 6 - nextDate; i++) {
+      dateBox.innerHTML = dateBox.innerHTML +
+      "<div class='dates next disable>" +
+      i +
+      "</div>";
+    }
   }
 
-  const newDDayobj = {
-    id : Date.now(),
-    endday : dDayDate.value,
-    cntDay : `D${cntDay}`,
-    title : dDayTitle.value,
+  const calToday = new Date();
+  if(currentYear === calToday.getFullYear() && currentMonth === calToday.getMonth()) {
+    const todayDate = calToday.getDate();
+    let curMonthDates = document.querySelectorAll('.current');
+    curMonthDates[todayDate - 1].classList.add('today');
   }
-  dDays.push(newDDayobj);
-  createDDay(newDDayobj);
-  saveDDays();
+}
+rendarCal(thisMonth);
 
-  dDayDate.value = `${curYear}-${curMonth}-${curDate}`;
-  dDayTitle.value = '';
+const btnPrev = document.querySelector('.btn_left');
+const btnNext = document.querySelector('.btn_right');
+
+function prevMonth() {
+  thisMonth = new Date(currentYear, currentMonth - 1, 1);
+  rendarCal(thisMonth);
+}
+function nextMonth() {
+  thisMonth = new Date(currentYear, currentMonth + 1, 1);
+  rendarCal(thisMonth);
 }
 
-dDayForm.addEventListener('submit', addSubmit);
-
-const savedDDays = localStorage.getItem(DDAY_KEY);
-if(savedDDays !== null){
-  const parsedDDays = JSON.parse(savedDDays);
-  dDays = parsedDDays;
-  parsedDDays.forEach(createDDay);
-}
+btnPrev.addEventListener('click', prevMonth);
+btnNext.addEventListener('click', nextMonth);
