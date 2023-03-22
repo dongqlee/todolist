@@ -1,9 +1,5 @@
 const clock = document.querySelector("#clock");
-
-const boxMonth = document.getElementById('box_month');
 const boxDate = document.getElementById('box_date');
-const boxYear = document.getElementById('box_year');
-const boxDay = document.getElementById('box_day');
 
 function getDate() {
   const nowDate = new Date();
@@ -12,10 +8,8 @@ function getDate() {
   let weekDay = ['일', '월', '화', '수', '목', '금', '토']
   const day = weekDay[nowDate.getDay()];
   const dateNow = String(nowDate.getDate()).padStart(2, '0');
-  boxMonth.innerText = `${month}월`;
-  boxDate.innerText = `${dateNow}일`;
-  boxYear.innerText = `${year}년`;
-  boxDay.innerText = `${day}요일`;
+
+  boxDate.innerText = `${year}년 ${month}월 ${dateNow}일 ${day}요일`;
 }
 
 function getTime() {

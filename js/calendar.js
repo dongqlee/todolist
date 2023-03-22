@@ -27,20 +27,25 @@ function rendarCal(thisMonth) {
       "</div>";
     }
   }
+  
   for(let i = 1; i <= nextDate; i++) {
     dateBox.innerHTML = dateBox.innerHTML + 
     "<div class='dates current'>"+
     i +
     "</div>";
+    
   }
+
   if(nextDay !==6) {
-    for(let i =1; i<= 6 - nextDate; i++) {
+    for(let i =1; i<= 6 - nextDay; i++) {
       dateBox.innerHTML = dateBox.innerHTML +
-      "<div class='dates next disable>" +
+      "<div class='dates next disable'>" +
       i +
       "</div>";
     }
   }
+
+  
 
   const calToday = new Date();
   if(currentYear === calToday.getFullYear() && currentMonth === calToday.getMonth()) {

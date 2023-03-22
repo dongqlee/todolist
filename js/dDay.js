@@ -1,4 +1,5 @@
 const dDay = document.getElementById('dDay');
+const dDayList = document.getElementById('dDay_list');
 const dDayForm = document.getElementById('dDay_form');
 const dDayDate = document.getElementById('dDay_date');
 const dDayTitle = document.getElementById('dDay_title');
@@ -39,9 +40,9 @@ function createDDay(newDDayobj) {
   const spanTitle = document.createElement('span');
 
   div.id = newDDayobj.id;
-  div.classList.add('dDay_box');
+  div.classList.add('dDay_li');
 
-  btn.classList.add('dDay_btn');
+  btn.classList.add('btn_deleted_Day');
   btn.innerText = '삭제';
   btn.addEventListener('click', deleteDDayBox);
 
@@ -52,11 +53,12 @@ function createDDay(newDDayobj) {
   spanCnt.innerText = newDDayobj.cntDay;
   spanTitle.innerText = newDDayobj.title;
 
-  div.appendChild(btn);
   div.appendChild(spanDate);
   div.appendChild(spanCnt);
   div.appendChild(spanTitle);
-  dDay.appendChild(div);
+  div.appendChild(btn);
+  dDayList.appendChild(div);
+  dDay.appendChild(dDayList);
 }
 
 function addSubmit(e) {
@@ -73,7 +75,6 @@ function addSubmit(e) {
   } else {
     cntDay = '+' + Math.abs(cntDay);
   }
-
   const newDDayobj = {
     id : Date.now(),
     endday : dDayDate.value,

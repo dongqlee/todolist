@@ -19,99 +19,109 @@
   <script src="js/background.js" defer></script>
 </head>
 <body>
-  <div>
-    <div class="time_box">
-      <div id="clock" class="clock">00:00:00</div>
-      <div id="box_month" class="box_month"></div>
-      <div id="box_date" class="box_date"></div>
-      <div id="box_year" class="box_year"></div>
-      <div id="box_day" class="box_day"></div>
-    </div>
+  <div class="page">
+    <div class="upper_box">
+      <div class="upper_inner">
+        <div class="time_box">
+          <div id="clock" class="clock">00:00:00</div>
+          <div id="box_date" class="box_date"></div>
+          <span id="now_location_weather" class="now_weather"></span>
+        </div>
 
-    <div id="foreCast">
-      <div>
-        <p>현재 위치의 날씨</p>
-        <div id="now_weather">
-          <span id="now_location"></span>
-          <span id="now_location_weather"></span>
-          <span id="now_location_temperature"></span>
+        <div id="foreCast" class="foreCast">
+          <!--
+          <div class="busan">
+            <div class="busan_inner">
+              <p>오늘 부산 날씨</p>
+              <ul>
+                <li>
+                  <span>날씨 : </span><span id="weather"></span>
+                </li>
+                <li>
+                  <span>온도 : </span><span id="temperature"></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          -->
+          <div class="search_weather">
+            <div class="sw_inner">
+              <p>다른 지역 날씨</p>
+              <input id="city" type="text" value="" placeholder="(예)Seoul or 서울">
+              <button onclick="getWeather()">검색</button>
+              <ul id="location_weather">
+
+              </ul>
+            </div>  
+          </div>
         </div>
       </div>
-      <div>
-        <p>오늘 부산 날씨</p>
-        <ul>
-          <li>
-            <span>날씨 : </span><span id="weather"></span>
-          </li>
-          <li>
-            <span>온도 : </span><span id="temperature"></span>
-          </li>
-        </ul>
+
+      <div class="greeting">
+        <form class="hidden" id="login_form" action="">
+          <input type="text" required maxlength="15" placeholder="Name" class="login_input">
+          <button class="btn_login">Log In</button>
+        </form>
+      
+        <div id="welcome" class="hidden welcome">
+          <span id="naming" class="naming"></span>
+          <button type="submit" id="log_out" class="btn_logout">Log Out</button>
+        </div>
       </div>
-      <div>
-        <p>다른 지역 날씨</p>
-        <input id="city" type="text" value="" placeholder="(예)Seoul">
-        <button onclick="getWeather()">검색</button>
-        <ul id="location_weather">
-        </ul>
+
+      <div class="calendar">
+        <div class="calendar_head">
+          <button class="btn_left"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="calendar_year_month"></div>
+          <button class="btn_right"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        <div class="calendar_date">
+          <div class="day_box">
+            <div class="sun">일</div>
+            <div>월</div>
+            <div>화</div>
+            <div>수</div>
+            <div>목</div>
+            <div>금</div>
+            <div class="sat">토</div>
+          </div>
+          <div class="date_box"></div>
+        </div>
       </div>
     </div>
-    
-  </div>
-  
 
-  <div class="greeting">
-    <form class="hidden" id="login_form" action="">
-      <input type="text" required maxlength="15" placeholder="Name" class="login_input">
-      <button class="btn_login">Log In</button>
-    </form>
-  
-    <div id="welcome" class="hidden">
-      <span id="naming"></span>
-      <button type="submit" id="log_out" class="btn_logout">Log Out</button>
-    </div>
-  </div>
-  
 
-  <form action="" id="todo_form">
-    <input type="text" placeholder="write a to do" id="todo_input" class="todo_input" required>
-  </form>
-  <ul id="todo_list">
-
-  </ul>
-
-  <div id="quote">
-    <span></span>
-    <span></span>
-  </div>
-
-  <div class="calendar">
-    <div class="calendar_head">
-      <button class="btn_left"><i class="fa-solid fa-chevron-left"></i></button>
-      <div class="calendar_year_month"></div>
-      <button class="btn_right"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-    <div class="calendar_date">
-      <div class="day_box">
-        <div class="sun">일</div>
-        <div>월</div>
-        <div>화</div>
-        <div>수</div>
-        <div>목</div>
-        <div>금</div>
-        <div class="sat">토</div>
+    <div class="scheduler">
+      <div id="quote" class="quote">
+        <span class="txt"></span>
+        <span class="author"></span>
       </div>
-      <div class="date_box"></div>
+
+      <div class="todo_box">
+        <div class="todo">
+          <form action="" id="todo_form" class="todo_form">
+            <input type="text" placeholder="write a to do" id="todo_input" class="todo_input" required maxlength="18">
+          </form>
+          <ul id="todo_list" class="todo_list">
+      
+          </ul>
+        </div>
+      </div>
+
+      <div class="dDay_box">
+        <div class="dDay" id="dDay">
+          <form action="" id="dDay_form" class="dDay_form">
+            <input type="date" required id="dDay_date" class="dDay_date" max="2050-12-31" />
+            <input type="text" required id="dDay_title" class="dDay_title" placeholder="Write a Title" />
+            <button id="dDay_add_btn" class="dDay_add_btn">D-Day 설정</button>
+          </form>
+          <div class="dDay_list" id="dDay_list">
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="dDay" id="dDay">
-    <form action="" id="dDay_form" class="dDay_form">
-      <input type="date" required id="dDay_date" class="dDay_date" max="2050-12-31" />
-      <input type="text" required id="dDay_title" class="dDay_title" placeholder="Write a Title" />
-      <button id="dDay_add_btn" class="dDay_add_btn">D-Day 설정</button>
-    </form>
-  </div>
-  
+  <div id="bg" class="bg"></div>
 </body>
 </html>

@@ -37,4 +37,5 @@ btnLogOut.addEventListener('click', ()=> {
     welcome.classList.add(HIDDEN_CLASSNAME);
     loginInput.value = ""
   }
+  alert('다음에 뵙겠습니다:)')
 })
