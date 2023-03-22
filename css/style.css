@@ -153,7 +153,7 @@ li {list-style: none;}
   color: blue;
 }
 .calendar .calendar_date .date_box .dates:nth-child(7n+1) {
-  color: red;
+  color: rgb(203, 0, 0);
 }
 
 .calendar .calendar_date .date_box .prev,
