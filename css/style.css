@@ -60,7 +60,9 @@ li {list-style: none;}
   text-align: center;
   margin-top: 10px;
 }
-
+.search_weather .sw_inner button {
+  background-color: rgba(255, 255, 255, 0);
+}
 /*-------login--------*/
 .greeting {
   width: 355px; 
@@ -83,7 +85,7 @@ li {list-style: none;}
 .btn_logout {
   width: 100px; height: 30px;
   font-size: 20px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
 }
 
@@ -100,7 +102,7 @@ li {list-style: none;}
 .calendar_head button {
   position: absolute;
   top: 8px;
-  background-color: none;
+  background-color: rgba(255, 255, 255, 0);
   border: none;
   font-size: 24px;
   cursor: pointer;
@@ -241,7 +243,7 @@ li {list-style: none;}
 .todo_list li button {
   width: 20px;
   font-size: 20px;
-  background-color: none;
+  background-color: rgba(255, 255, 255, 0);
   border: none;
   cursor: pointer;
 }
@@ -316,7 +318,7 @@ li {list-style: none;}
   position: absolute; 
   top: 50%; right: 10px;
   transform: translateY(-50%);
-  background-color: none;
+  background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
 }
 /*--------background-------*/
